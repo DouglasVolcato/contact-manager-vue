@@ -1,5 +1,12 @@
 <template>
-  <TabMenu :model="items" />
+  <!-- <TabMenu :model="items" /> -->
+  <nav class="flex flex-row flex-wrap justify-content-evenly w-full bg-primary">
+    <div v-for="item in items">
+      <router-link :to="item.to">
+        <Button> <i :class="item.icon"></i>{{ item.label }} </Button>
+      </router-link>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -31,6 +38,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    navigate(route) {
+      console.log(route);
+    },
   },
 };
 </script>
