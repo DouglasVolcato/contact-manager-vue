@@ -1,5 +1,5 @@
 <template>
-  <h2 class="w-max mt-4 m-auto text-cyan-500">{{ text }}</h2>
+  <h2 class="mt-4 text-cyan-500 text-center">{{ text }}</h2>
 </template>
 
 <script>
