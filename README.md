@@ -1,6 +1,3 @@
-# primevue-quickstart-vite
-
-
 ## Project setup
 ```
 npm install
