@@ -7,7 +7,7 @@
   </div>
   <form class="flex flex-row flex-wrap justify-content-center mt-5">
     <Button class="mr-2"> <i class="pi pi-search mt-1 mb-1"></i></Button>
-    <InputText placeholder="Search" />
+    <InputText placeholder="Search name" />
   </form>
 </template>
 
