@@ -1,9 +1,12 @@
 <template>
-    <h2>Home</h2>
+  <Title text="Home" />
 </template>
 
 <script>
-    export default{
-        name: "Home"
-    }
+import Title from "../components/Title.vue";
+
+export default {
+  name: "Home",
+  components: { Title },
+};
 </script>

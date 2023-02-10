@@ -1,11 +1,14 @@
 <template>
-    <h2>Contact Manager</h2>
+  <Title text="Contact Manager" />
 </template>
 
 <script>
-    export default{
-        name:"ContactManager"
-    }
+import Title from "../components/Title.vue";
+
+export default {
+  name: "ContactManager",
+  components: { Title },
+};
 </script>
 
 <style scoped></style>

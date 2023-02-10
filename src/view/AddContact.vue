@@ -1,11 +1,14 @@
 <template>
-    <h2>Add Contact</h2>
+  <Title text="Add Contacts" />
 </template>
 
 <script>
-    export default{
-        name:"AddContact"
-    }
+import Title from "../components/Title.vue";
+
+export default {
+  name: "AddContact",
+  components: { Title },
+};
 </script>
 
 <style scoped></style>

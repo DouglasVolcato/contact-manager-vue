@@ -1,11 +1,14 @@
 <template>
-    <h2>View Contact</h2>
+  <Title text="View Contact" />
 </template>
 
 <script>
-    export default{
-        name:"ViewContact"
-    }
+import Title from "../components/Title.vue";
+
+export default {
+  name: "ViewContact",
+  components: { Title },
+};
 </script>
 
 <style scoped></style>

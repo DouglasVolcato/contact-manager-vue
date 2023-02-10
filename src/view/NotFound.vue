@@ -1,9 +1,12 @@
 <template>
-    <h2>Page not found</h2>
+  <Title text="Page not found" />
 </template>
 
 <script>
-    export default{
-        name: "Not Found"
-    }
+import Title from "../components/Title.vue";
+
+export default {
+  name: "Not Found",
+  components: { Title },
+};
 </script>
