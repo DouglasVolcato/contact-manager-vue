@@ -1,5 +1,4 @@
 <template>
-  <!-- <TabMenu :model="items" /> -->
   <nav class="flex flex-row flex-wrap justify-content-evenly w-full bg-primary">
     <div v-for="item in items">
       <router-link :to="item.to">
