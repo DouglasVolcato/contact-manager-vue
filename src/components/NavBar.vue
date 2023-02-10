@@ -38,10 +38,5 @@ export default {
       ],
     };
   },
-  methods: {
-    navigate(route) {
-      console.log(route);
-    },
-  },
 };
 </script>
