@@ -1,7 +1,7 @@
 <template>
   <nav class="flex flex-row flex-wrap justify-content-evenly w-full bg-primary">
     <div v-for="item in items">
-      <router-link :to="item.to">
+      <router-link :to="item.to" class="no-underline">
         <Button> <i :class="item.icon"></i>{{ item.label }} </Button>
       </router-link>
     </div>
