@@ -1,9 +1,11 @@
 <template>
   <div class="flex flex-row flex-wrap justify-content-center">
     <Title text="Contact Manager" />
-    <Button class="p-button-success m-2 mt-3"
-      ><i class="pi pi-plus-circle text-xl"
-    /></Button>
+    <router-link to="/contacts/add" class="no-underline">
+      <Button class="p-button-success m-2 mt-3"
+        ><i class="pi pi-plus-circle text-xl"
+      /></Button>
+    </router-link>
   </div>
   <form class="flex flex-row flex-wrap justify-content-center mt-5">
     <InputText placeholder="Search name" />
