@@ -16,6 +16,13 @@
       <Button class="p-button-success">Create</Button>
     </div>
   </form>
+  <div class="p-3 flex justify-content-center">
+    <img
+      :src="imageLink"
+      alt="Profile"
+      class="h-8rem w-8rem border-circle border-solid"
+    />
+  </div>
 </template>
 
 <script>
@@ -26,6 +33,8 @@ export default {
   components: { Title },
   data() {
     return {
+      imageLink:
+        "https://play-lh.googleusercontent.com/_FY955G6x8cRVOLb-seFqoZfIVWBGprb6WzaGDx8bqTi1KuOKqlqPKWt5KXyjm8lVyA",
       form: {
         name: "",
         photoUrl: "",
