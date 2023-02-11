@@ -1,7 +1,13 @@
 <template>
-  <div class="flex flex-row m-2 border-double w-max p-1 bg-gray-200">
-    <div class="flex flex-column bg-primary w-4 m-2">
-      <img :src="imageUrl" alt="Profile" class="h-8rem w-8rem" />
+  <div
+    class="flex flex-row m-2 border-double w-max p-1 bg-gray-200 border-round"
+  >
+    <div class="flex flex-column w-4 m-2">
+      <img
+        :src="imageUrl"
+        alt="Profile"
+        class="h-8rem w-8rem border-circle border-solid"
+      />
     </div>
     <div class="flex flex-column justify-content-evenly m-1">
       <h4>
