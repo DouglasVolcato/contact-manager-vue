@@ -17,8 +17,12 @@
       <p>Email: {{ email }}</p>
     </div>
     <div class="flex flex-column">
-      <Button icon="pi pi-eye" class="p-button-warning m-1" />
-      <Button icon="pi pi-pencil" class="m-1" />
+      <router-link to="/contacts/view/:contactId" class="no-underline">
+        <Button icon="pi pi-eye" class="p-button-success m-1 border-solid" />
+      </router-link>
+      <router-link to="/contacts/edit/:contactId" class="no-underline">
+        <Button icon="pi pi-pencil" class="m-1" />
+      </router-link>
       <Button icon="pi pi-trash" class="p-button-danger m-1" />
     </div>
   </div>
