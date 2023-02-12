@@ -51,7 +51,7 @@ export default {
           name: "mobile",
           type: "number",
           label: "Mobile",
-          value: "23042-2342",
+          value: "230422342",
         },
         { name: "company", type: "text", label: "Company", value: "DB-Seller" },
         {
