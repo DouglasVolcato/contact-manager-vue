@@ -13,7 +13,7 @@
   </form>
   <div class="flex flex-direction-row justify-content-center mt-5 flex-wrap">
     <ContactCard
-      v-for="contact in contactList"
+      v-for="contact in data.contactList"
       :id="contact.id"
       :title="contact.name"
       :number="contact.mobile"
@@ -22,46 +22,39 @@
       :deleteContactFunction="deleteContact"
     />
   </div>
-  <Spinner :loading="loading" />
+  <Spinner :loading="data.loading" />
 </template>
 
-<script>
+<script setup>
 import Title from "../components/Title.vue";
 import ContactCard from "../components/ContactCard.vue";
 import Spinner from "../components/Spinner.vue";
 import ContactService from "../services/contact-services";
+import { reactive, onMounted } from "vue";
 
-export default {
-  name: "ContactManager",
-  components: { Title, ContactCard, Spinner },
-  data() {
-    return {
-      loading: false,
-      contactList: [],
-      errorMessage: null,
-    };
-  },
-  created() {
-    this.getAllContacts();
-  },
-  methods: {
-    getAllContacts() {
-      this.loading = true;
-      setTimeout(() => {
-        const contacts = ContactService.getAllContacts();
-        this.contactList = contacts;
-        this.loading = false;
-      }, 1000);
-    },
-    deleteContact(id) {
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = ContactService.deleteContact(id);
-        this.loading = false;
-      }, 1000);
-    },
-  },
-};
+const data = reactive({
+  loading: false,
+  contactList: [],
+  errorMessage: null,
+});
+
+onMounted(() => {
+  getAllContacts();
+});
+
+function getAllContacts() {
+  data.loading = true;
+  setTimeout(() => {
+    const contacts = ContactService.getAllContacts();
+    data.contactList = contacts;
+    data.loading = false;
+  }, 1000);
+}
+function deleteContact(id) {
+  data.loading = true;
+  setTimeout(() => {
+    ContactService.deleteContact(id);
+    data.loading = false;
+  }, 1000);
+}
 </script>
-
-<style scoped></style>

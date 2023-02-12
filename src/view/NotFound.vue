@@ -2,11 +2,6 @@
   <Title text="Page not found" />
 </template>
 
-<script>
+<script setup>
 import Title from "../components/Title.vue";
-
-export default {
-  name: "Not Found",
-  components: { Title },
-};
 </script>

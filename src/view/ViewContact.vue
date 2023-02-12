@@ -2,7 +2,7 @@
   <Title text="View Contact" />
   <div class="border-solid max-w-screen w-6 m-auto mt-3 surface-300">
     <div class="m-5 flex flex-row flex-wrap justify-content-evenly">
-      <div class="m-5 ml-2 mr-2" v-for="input in dataList">
+      <div class="m-5 ml-2 mr-2" v-for="input in data.dataList">
         <label class="mr-2" :for="input.name">{{ input.label }}:</label>
         <InputText
           :id="input.name"
@@ -22,77 +22,73 @@
       />
     </div>
   </div>
-  <Spinner :loading="loading" />
+  <Spinner :loading="data.loading" />
 </template>
 
-<script>
+<script setup>
 import Title from "../components/Title.vue";
 import ContactService from "../services/contact-services";
 import Spinner from "../components/Spinner.vue";
+import { onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 
-export default {
-  name: "ViewContact",
-  components: { Title, Spinner },
-  data() {
-    return {
-      contactId: this.$route.params.contactId,
-      loading: false,
-      anonymousProfileImage:
-        "https://play-lh.googleusercontent.com/_FY955G6x8cRVOLb-seFqoZfIVWBGprb6WzaGDx8bqTi1KuOKqlqPKWt5KXyjm8lVyA",
-      dataList: [
-        { name: "name", type: "text", label: "Name", value: "Douglas" },
-        {
-          name: "photoUrl",
-          type: "text",
-          label: "PhotoUrl",
-          value: "",
-        },
-        {
-          name: "email",
-          type: "email",
-          label: "Email",
-          value: "",
-        },
-        {
-          name: "mobile",
-          type: "number",
-          label: "Mobile",
-          value: "230422342",
-        },
-        { name: "company", type: "text", label: "Company", value: "" },
-        {
-          name: "title",
-          type: "text",
-          label: "Title",
-          value: "",
-        },
-      ],
-    };
-  },
-  created() {
-    this.getContact();
-  },
-  methods: {
-    getContact() {
-      this.loading = true;
-      setTimeout(() => {
-        const contact = ContactService.getContact(this.contactId);
-        this.dataList[0].value = contact.name;
-        this.dataList[1].value = contact.photoUrl;
-        this.dataList[2].value = contact.email;
-        this.dataList[3].value = contact.mobile;
-        this.dataList[4].value = contact.company;
-        this.dataList[5].value = contact.title;
-        this.loading = false;
-      }, 1000);
+const route = useRoute();
+const data = reactive({
+  contactId: route.params.contactId,
+  loading: false,
+  anonymousProfileImage:
+    "https://play-lh.googleusercontent.com/_FY955G6x8cRVOLb-seFqoZfIVWBGprb6WzaGDx8bqTi1KuOKqlqPKWt5KXyjm8lVyA",
+  dataList: [
+    { name: "name", type: "text", label: "Name", value: "Douglas" },
+    {
+      name: "photoUrl",
+      type: "text",
+      label: "PhotoUrl",
+      value: "",
     },
-    getPhoto() {
-      return this.dataList[1].value.trim() === ""
-        ? this.anonymousProfileImage
-        : this.dataList[1].value;
+    {
+      name: "email",
+      type: "email",
+      label: "Email",
+      value: "",
     },
-  },
-};
+    {
+      name: "mobile",
+      type: "number",
+      label: "Mobile",
+      value: "230422342",
+    },
+    { name: "company", type: "text", label: "Company", value: "" },
+    {
+      name: "title",
+      type: "text",
+      label: "Title",
+      value: "",
+    },
+  ],
+});
+
+onMounted(() => {
+  getContact();
+});
+
+function getContact() {
+  data.loading = true;
+  setTimeout(() => {
+    const contact = ContactService.getContact(data.contactId);
+    data.dataList[0].value = contact.name;
+    data.dataList[1].value = contact.photoUrl;
+    data.dataList[2].value = contact.email;
+    data.dataList[3].value = contact.mobile;
+    data.dataList[4].value = contact.company;
+    data.dataList[5].value = contact.title;
+    data.loading = false;
+  }, 1000);
+}
+
+function getPhoto() {
+  return data.dataList[1].value.trim() === ""
+    ? data.anonymousProfileImage
+    : data.dataList[1].value;
+}
 </script>
-
-<style scoped></style>
