@@ -1,6 +1,6 @@
 <template>
   <Title text="Edit Contact" />
-  <form class="border-solid max-w-screen w-6 m-auto mt-3">
+  <form class="border-solid max-w-screen w-6 m-auto mt-3 surface-300">
     <div class="m-5 flex flex-row flex-wrap justify-content-evenly">
       <div class="p-float-label m-5 ml-2 mr-2" v-for="input in form.inputList">
         <InputText
@@ -12,7 +12,7 @@
         <label :for="input.name">{{ input.label }}</label>
       </div>
     </div>
-    <div class="bg-primary w-min m-auto mb-5">
+    <div class="w-min m-auto mb-5">
       <Button>Update</Button>
     </div>
   </form>
