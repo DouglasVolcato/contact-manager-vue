@@ -30,25 +30,19 @@
       />
     </div>
   </div>
-  <Spinner :loading="loading" />
+  <Spinner :loading="data.loading" />
 </template>
 
-<script>
+<script setup>
 import Spinner from "../components/Spinner.vue";
 
-export default {
-  name: "ContactCard",
-  data() {
-    return { loading: false };
-  },
-  components: { Spinner },
-  props: {
-    id: String,
-    title: String,
-    number: String,
-    email: String,
-    imageUrl: String,
-    deleteContactFunction: Function,
-  },
-};
+const data = { loading: false };
+const props = defineProps({
+  id: String,
+  title: String,
+  number: String,
+  email: String,
+  imageUrl: String,
+  deleteContactFunction: Function,
+});
 </script>

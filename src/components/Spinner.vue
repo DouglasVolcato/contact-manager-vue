@@ -9,11 +9,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Spinner",
-  props: {
-    loading: Boolean,
-  },
-};
+<script setup>
+const props = defineProps({
+  loading: Boolean,
+});
 </script>
