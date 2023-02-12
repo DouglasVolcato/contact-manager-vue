@@ -14,47 +14,52 @@
   <div class="flex flex-direction-row justify-content-center mt-5 flex-wrap">
     <ContactCard
       v-for="contact in contactList"
+      :id="contact.id"
       :title="contact.name"
-      :number="contact.number"
+      :number="contact.mobile"
       :email="contact.email"
-      :imageUrl="contact.imageUrl"
+      :imageUrl="contact.photoUrl"
+      :deleteContactFunction="deleteContact"
     />
   </div>
+  <Spinner :loading="loading" />
 </template>
 
 <script>
 import Title from "../components/Title.vue";
 import ContactCard from "../components/ContactCard.vue";
+import Spinner from "../components/Spinner.vue";
+import ContactService from "../services/contact-services";
 
 export default {
   name: "ContactManager",
-  components: { Title, ContactCard },
+  components: { Title, ContactCard, Spinner },
   data() {
     return {
-      contactList: [
-        {
-          name: "teste1",
-          number: "342343424",
-          email: "teste@gmail.com",
-          imageUrl:
-            "https://images.pexels.com/photos/15272872/pexels-photo-15272872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-        {
-          name: "teste2",
-          number: "3423434244234",
-          email: "teste2@gmail.com",
-          imageUrl:
-            "https://images.pexels.com/photos/14666143/pexels-photo-14666143.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-        {
-          name: "teste3",
-          number: "34267657",
-          email: "teste3@gmail.com",
-          imageUrl:
-            "https://images.pexels.com/photos/14666143/pexels-photo-14666143.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-      ],
+      loading: false,
+      contactList: [],
+      errorMessage: null,
     };
+  },
+  created() {
+    this.getAllContacts();
+  },
+  methods: {
+    getAllContacts() {
+      this.loading = true;
+      setTimeout(() => {
+        const contacts = ContactService.getAllContacts();
+        this.contactList = contacts;
+        this.loading = false;
+      }, 1000);
+    },
+    deleteContact(id) {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = ContactService.deleteContact(id);
+        this.loading = false;
+      }, 1000);
+    },
   },
 };
 </script>

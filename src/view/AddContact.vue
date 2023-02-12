@@ -13,32 +13,37 @@
       </div>
     </div>
     <div class="w-min m-auto mb-5">
-      <Button class="p-button-success">Create</Button>
+      <Button class="p-button-success" @click="createContact">Create</Button>
     </div>
   </form>
   <div class="p-3 flex justify-content-center">
     <img
-      :src="imageLink"
+      :src="getPhoto()"
       alt="Profile"
       class="h-8rem w-8rem border-circle border-solid"
     />
   </div>
+  <Spinner :loading="loading" />
 </template>
 
 <script>
 import Title from "../components/Title.vue";
+import ContactService from "../services/contact-services";
+import Spinner from "../components/Spinner.vue";
 
 export default {
   name: "AddContact",
-  components: { Title },
+  components: { Title, Spinner },
   data() {
     return {
-      imageLink:
+      loading: false,
+      anonymousProfileImage:
         "https://play-lh.googleusercontent.com/_FY955G6x8cRVOLb-seFqoZfIVWBGprb6WzaGDx8bqTi1KuOKqlqPKWt5KXyjm8lVyA",
       form: {
         name: "",
         photoUrl: "",
         email: "",
+        mobile: "",
         company: "",
         title: "",
         inputList: [
@@ -51,6 +56,29 @@ export default {
         ],
       },
     };
+  },
+  methods: {
+    getPhoto() {
+      return this.form.photoUrl.trim() === ""
+        ? this.anonymousProfileImage
+        : this.form.photoUrl.trim();
+    },
+    createContact() {
+      this.loading = true;
+      setTimeout(() => {
+        const body = {
+          name: this.form.name,
+          photoUrl: this.form.photoUrl,
+          email: this.form.email,
+          mobile: this.form.mobile,
+          company: this.form.company,
+          title: this.form.title,
+        };
+        ContactService.createContact(body);
+        this.loading = false;
+        this.$router.push("/");
+      }, 1000);
+    },
   },
 };
 </script>

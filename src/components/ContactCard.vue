@@ -17,25 +17,38 @@
       <p>Email: {{ email }}</p>
     </div>
     <div class="flex flex-column">
-      <router-link to="/contacts/view/:contactId" class="no-underline">
+      <router-link :to="'/contacts/view/' + id" class="no-underline">
         <Button icon="pi pi-eye" class="p-button-success m-1 border-solid" />
       </router-link>
-      <router-link to="/contacts/edit/:contactId" class="no-underline">
+      <router-link :to="'/contacts/edit/' + id" class="no-underline">
         <Button icon="pi pi-pencil" class="m-1" />
       </router-link>
-      <Button icon="pi pi-trash" class="p-button-danger m-1" />
+      <Button
+        icon="pi pi-trash"
+        @click="deleteContactFunction(id)"
+        class="p-button-danger m-1"
+      />
     </div>
   </div>
+  <Spinner :loading="loading" />
 </template>
 
 <script>
+import Spinner from "../components/Spinner.vue";
+
 export default {
   name: "ContactCard",
+  data() {
+    return { loading: false };
+  },
+  components: { Spinner },
   props: {
+    id: String,
     title: String,
     number: String,
     email: String,
     imageUrl: String,
+    deleteContactFunction: Function,
   },
 };
 </script>

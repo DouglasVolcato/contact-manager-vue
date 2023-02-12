@@ -12,33 +12,39 @@
         <label :for="input.name">{{ input.label }}</label>
       </div>
     </div>
-    <div class="w-min m-auto mb-5">
+    <div class="w-min m-auto mb-5" @click="editContact">
       <Button>Update</Button>
     </div>
   </form>
   <div class="p-3 flex justify-content-center">
     <img
-      :src="imageLink"
+      :src="getPhoto()"
       alt="Profile"
       class="h-8rem w-8rem border-circle border-solid"
     />
   </div>
+  <Spinner :loading="loading" />
 </template>
 
 <script>
 import Title from "../components/Title.vue";
+import Spinner from "../components/Spinner.vue";
+import ContactService from "../services/contact-services";
 
 export default {
   name: "EditContact",
-  components: { Title },
+  components: { Title, Spinner },
   data() {
     return {
-      imageLink:
+      contactId: this.$route.params.contactId,
+      loading: false,
+      anonymousProfileImage:
         "https://play-lh.googleusercontent.com/_FY955G6x8cRVOLb-seFqoZfIVWBGprb6WzaGDx8bqTi1KuOKqlqPKWt5KXyjm8lVyA",
       form: {
         name: "",
         photoUrl: "",
         email: "",
+        mobile: "",
         company: "",
         title: "",
         inputList: [
@@ -51,6 +57,45 @@ export default {
         ],
       },
     };
+  },
+  created() {
+    this.getContact();
+  },
+  methods: {
+    getContact() {
+      this.loading = true;
+      setTimeout(() => {
+        const contact = ContactService.getContact(this.contactId);
+        this.form.name = contact.name;
+        this.form.photoUrl = contact.photoUrl;
+        this.form.email = contact.email;
+        this.form.mobile = contact.mobile;
+        this.form.company = contact.company;
+        this.form.title = contact.title;
+        this.loading = false;
+      }, 1000);
+    },
+    editContact() {
+      this.loading = true;
+      setTimeout(() => {
+        const body = {
+          name: this.form.name,
+          photoUrl: this.form.photoUrl,
+          email: this.form.email,
+          mobile: this.form.mobile,
+          company: this.form.company,
+          title: this.form.title,
+        };
+        ContactService.updateContact(this.contactId, body);
+        this.loading = false;
+        this.$router.push("/");
+      }, 1000);
+    },
+    getPhoto() {
+      return this.form.photoUrl.trim() === ""
+        ? this.anonymousProfileImage
+        : this.form.photoUrl;
+    },
   },
 };
 </script>
