@@ -17,6 +17,11 @@ const data = {
       icon: "pi pi-plus-circle text-xl",
       to: "/contacts/add",
     },
+    {
+      label: "UploadFile",
+      icon: "pi pi-folder-open",
+      to: "/upload-file",
+    },
   ],
 };
 </script>

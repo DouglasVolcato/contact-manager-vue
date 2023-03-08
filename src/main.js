@@ -8,6 +8,7 @@ import InputText from "primevue/inputtext";
 import Card from "primevue/card";
 import Image from "primevue/image";
 import ProgressSpinner from "primevue/progressspinner";
+import FileUpload from "primevue/fileupload";
 
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
@@ -17,7 +18,6 @@ import "/node_modules/primeflex/primeflex.css";
 const app = createApp(App);
 
 app.use(router);
-// app.use(store);
 app.use(PrimeVue);
 app.component("ProgressSpinner", ProgressSpinner);
 app.component("Image", Image);
@@ -25,4 +25,5 @@ app.component("Card", Card);
 app.component("InputText", InputText);
 app.component("TabMenu", TabMenu);
 app.component("Button", Button);
+app.component("FileUpload", FileUpload);
 app.mount("#app");

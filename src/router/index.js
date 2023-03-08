@@ -5,6 +5,7 @@ import AddContact from "../view/AddContact.vue";
 import EditContact from "../view/EditContact.vue";
 import ViewContact from "../view/ViewContact.vue";
 import NotFound from "../view/NotFound.vue";
+import UploadFile from "../view/UploadFile.vue";
 
 const routes = [
   { path: "/", name: "Home", redirect: "/contacts", component: Home },
@@ -19,6 +20,11 @@ const routes = [
     path: "/contacts/view/:contactId",
     name: "ViewContact",
     component: ViewContact,
+  },
+  {
+    path: "/upload-file",
+    name: "UploadFile",
+    component: UploadFile,
   },
   {
     path: "/:pathMatch(.*)*",
